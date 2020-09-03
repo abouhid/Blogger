@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class TagsController < ApplicationController
+  before_action :require_login, only: [:destroy]
+
   def index
     @tags = Tag.all
   end
@@ -8,6 +10,7 @@ class TagsController < ApplicationController
   def show
     @tag = Tag.find(params[:id])
   end
+
   def destroy
     @tag = Tag.find(params[:id])
     @tag.destroy
